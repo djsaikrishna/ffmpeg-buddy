@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>ffmpeg buddy</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="pure-min.css" />
+    <link rel="stylesheet" href="vendor/pure-min.css" />
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
@@ -14,7 +14,14 @@
       <a href="https://ffmpeg.org/">ffmpeg</a> commands
     </h2>
 
-    <pre id="outputEl"># loading...</pre>
+    <div id="outputContainer">
+      <pre id="outputEl"># loading...</pre>
+      <button
+        id="copyButtonEl"
+        class="waiting"
+        title="Copy to clipboard"
+      ></button>
+    </div>
 
     <form id="formEl" class="pure-form pure-form-aligned">
       <fieldset>
