@@ -1,9 +1,19 @@
-/* global outputEl, formEl, inputFilenameEl, outputFilenameEl, disableVideoEl, disableAudioEl, scaleWidthEl, scaleHeightEl, framerateEl, rotateEl, flipEl, startAtEl, endAtEl */
+/* global outputEl, copyButtonEl, formEl, inputFilenameEl, outputFilenameEl, disableVideoEl, disableAudioEl, scaleWidthEl, scaleHeightEl, framerateEl, rotateEl, flipEl, startAtEl, endAtEl */
 
 import quoteFilename from "./lib/quote-filename.js";
 import getScaleFlag from "./lib/get-scale-flag.js";
+import preloadImage from "./lib/preload-image.js";
+
+let copyButtonState = "waiting";
+let copyButtonTimeout = null;
 
 function render() {
+  if (copyButtonState === "copying") {
+    copyButtonEl.className = "waiting";
+  } else {
+    copyButtonEl.className = copyButtonState;
+  }
+
   const inputFilename = inputFilenameEl.value.trim() || "input.mp4";
   const outputFilename = outputFilenameEl.value.trim() || "output.gif";
 
@@ -55,11 +65,46 @@ function render() {
   }
 }
 
-formEl.addEventListener("input", () => render());
-formEl.addEventListener("change", () => render());
+function onFormChange() {
+  copyButtonState = "waiting";
+  clearTimeout(copyButtonTimeout);
+  render();
+}
+
+formEl.addEventListener("input", onFormChange);
+formEl.addEventListener("change", onFormChange);
 formEl.addEventListener("submit", (event) => {
   event.preventDefault();
   render();
 });
 
+copyButtonEl.addEventListener("click", async (event) => {
+  event.preventDefault();
+
+  if (copyButtonState === "copying") {
+    return;
+  }
+  copyButtonState = "copying";
+
+  clearTimeout(copyButtonTimeout);
+
+  let newState = "copied";
+  try {
+    await navigator.clipboard.writeText(outputEl.textContent);
+  } catch (err) {
+    console.error(err);
+    newState = "failed";
+  }
+
+  copyButtonState = newState;
+  render();
+
+  copyButtonTimeout = setTimeout(() => {
+    copyButtonState = "waiting";
+    render();
+  }, 3000);
+});
+
 render();
+
+preloadImage("vendor/check.svg");

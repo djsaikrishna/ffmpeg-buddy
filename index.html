@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>ffmpeg buddy</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="pure-min.css" />
+    <link rel="stylesheet" href="vendor/pure-min.css" />
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
@@ -14,7 +14,14 @@
       <a href="https://ffmpeg.org/">ffmpeg</a> commands
     </h2>
 
-    <pre id="outputEl"># loading...</pre>
+    <div id="outputContainer">
+      <pre id="outputEl"># loading...</pre>
+      <button
+        id="copyButtonEl"
+        class="waiting"
+        title="Copy to clipboard"
+      ></button>
+    </div>
 
     <form id="formEl" class="pure-form pure-form-aligned">
       <fieldset>
@@ -70,11 +77,11 @@
         </div>
 
         <div class="pure-control-group needs-video">
-          <label for="flipEl">Flip Video</label>
+          <label for="flipEl">Flip video</label>
           <select id="flipEl">
             <option value="no flip">none</option>
-            <option value="-vf hflip">horizontal (like a webcam)</option>
-            <option value="-vf vflip">vertical (tablet presentation)</option>
+            <option value="-vf hflip">horizontal</option>
+            <option value="-vf vflip">vertical</option>
           </select>
         </div>
 
@@ -93,7 +100,10 @@
     <script type="module" src="index.js"></script>
 
     <footer>
-      Made by <a class="evanhahn-link" href="https://evanhahn.com">Evan Hahn</a>
+      Made by <a href="https://evanhahn.com">Evan Hahn</a> and
+      <a href="https://github.com/EvanHahn/ffmpeg-buddy/graphs/contributors"
+        >contributors</a
+      >
     </footer>
   </body>
 </html>
