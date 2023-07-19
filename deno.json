@@ -1,0 +1,11 @@
+{
+  "tasks": {
+    "test": "deno check **/*.js **/*.ts && deno fmt --check && deno lint && deno test"
+  },
+  "compilerOptions": {
+    "lib": ["deno.ns", "es2022", "dom"]
+  },
+  "fmt": {
+    "proseWrap": "preserve"
+  }
+}

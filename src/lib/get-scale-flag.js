@@ -1,8 +1,18 @@
+// @ts-check
+
+/**
+ * @param {string} n
+ * @returns {number}
+ */
 function percent(n) {
   return parseFloat(n) / 100;
 }
 
-// TODO: scaleFlags -> getScaleFlag
+/**
+ * @param {string} w
+ * @param {string} h
+ * @returns {null | string}
+ */
 export default function getScaleFlag(w, h) {
   w = w.trim() || "-1";
   h = h.trim() || "-1";

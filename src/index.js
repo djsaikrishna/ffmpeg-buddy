@@ -1,5 +1,3 @@
-/* global outputEl, copyButtonEl, formEl, inputFilenameEl, outputFilenameEl, disableVideoEl, disableAudioEl, scaleWidthEl, scaleHeightEl, framerateEl, rotateEl, flipEl, startAtEl, endAtEl */
-
 import quoteFilename from "./lib/quote-filename.js";
 import getScaleFlag from "./lib/get-scale-flag.js";
 import preloadImage from "./lib/preload-image.js";
