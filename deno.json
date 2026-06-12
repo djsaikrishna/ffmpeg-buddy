@@ -6,6 +6,7 @@
     "lib": ["deno.ns", "es2022", "dom"]
   },
   "fmt": {
-    "proseWrap": "preserve"
+    "proseWrap": "preserve",
+    "exclude": ["src/vendor"]
   }
 }
